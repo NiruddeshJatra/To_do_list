@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/global.css' %}">
+  <title>To-Do List - {% block title %}{% endblock %}</title>
+</head>
+<body>
+  <!-- navigation bar -->
+  <nav>
+    <div class="nav-link">
+      <a href="{% url 'todolist:show_tasks' %}">Pending</a>
+      <a href="{% url 'todolist:add_task' %}">New</a>
+      <a href="{% url 'todolist:completed_tasks' %}">Completed</a>
+    </div>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

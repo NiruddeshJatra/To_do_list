@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Add Tasks
+{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <h1>{% if blog %}Edit{% else %}Create{% endif %} Task</h1>
+
+    <form method="POST" action="{% if task %}{% url 'todolist:edit_task' taskTitle=task.taskTitle %}{% else %}{% url 'todolist:add_task' %}{% endif %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="taskTitle" value="{{ task.taskTitle }}" required>
+      </div>
+      <div class="form-group">
+        <label for="">Description</label>
+        <textarea class="form-control" id="content" name="taskDescription" rows="7" required>{{ task.taskDescription }}</textarea>
+      </div>
+      <div class="btn-group">
+        <button type="submit" name="status" value="submitted">{% if blog %}Update Task{% else %}Create Task{% endif %}</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

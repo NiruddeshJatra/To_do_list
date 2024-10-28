@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Show Tasks
+{% endblock %}
+
+{% block content %}
+  <h1>Tasks</h1>
+  <table border="1" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+        <tr>
+          <td>{{ task.taskTitle }}</td>
+          <td>{{ task.taskDescription }}</td>
+          <td>Incomplete</td>
+          <td>
+            <div class="action-btn">
+              <a href="{% url 'todolist:delete_task' taskTitle=task.taskTitle %}" class="delete-link">Delete</a>
+              <a href="{% url 'todolist:edit_task' taskTitle=task.taskTitle %}" class="edit-link">Edit</a>
+              <a href="{% url 'todolist:mark_completed' taskTitle=task.taskTitle %}" class="complete-link">Complete</a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
