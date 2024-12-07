@@ -23,9 +23,12 @@
           <td>Incomplete</td>
           <td>
             <div class="action-btn">
-              <a href="{% url 'todolist:delete_task' taskTitle=task.taskTitle %}" class="delete-link">Delete</a>
-              <a href="{% url 'todolist:edit_task' taskTitle=task.taskTitle %}" class="edit-link">Edit</a>
-              <a href="{% url 'todolist:mark_completed' taskTitle=task.taskTitle %}" class="complete-link">Complete</a>
+              <a href="{% url 'todolist:delete_task' pk=task.id %}" class="delete-link">Delete</a>
+              <a href="{% url 'todolist:edit_task' pk=task.id %}" class="edit-link">Edit</a>
+              <form method="POST" action="{% url 'todolist:mark_task_completed' pk=task.id %}">
+                {% csrf_token %}
+                <button type="submit" class="complete-link">Complete</button>
+              </form>
             </div>
           </td>
         </tr>

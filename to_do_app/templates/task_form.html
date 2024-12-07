@@ -8,7 +8,7 @@
   <div class="form-container">
     <h1>{% if blog %}Edit{% else %}Create{% endif %} Task</h1>
 
-    <form method="POST" action="{% if task %}{% url 'todolist:edit_task' taskTitle=task.taskTitle %}{% else %}{% url 'todolist:add_task' %}{% endif %}">
+    <form method="POST" action="{% if task %}{% url 'todolist:edit_task' pk=task.id %}{% else %}{% url 'todolist:add_task' %}{% endif %}">
       {% csrf_token %}
       <div class="form-group">
         <label for="title">Title</label>
@@ -19,7 +19,7 @@
         <textarea class="form-control" id="content" name="taskDescription" rows="7" required>{{ task.taskDescription }}</textarea>
       </div>
       <div class="btn-group">
-        <button type="submit" name="status" value="submitted">{% if blog %}Update Task{% else %}Create Task{% endif %}</button>
+        <button type="submit" name="status" value="submitted">{% if task %}Update Task{% else %}Create Task{% endif %}</button>
       </div>
     </form>
   </div>
